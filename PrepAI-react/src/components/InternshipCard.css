@@ -1,0 +1,87 @@
+.internship-card{
+  background:#fff;
+  border-radius:16px;
+  padding:20px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  transition:.2s;
+}
+
+.internship-card:hover{
+  transform:translateY(-4px);
+}
+
+.internship-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+}
+
+.internship-top h3{
+  margin:0;
+  font-size:22px;
+  color:#111827;
+}
+
+.role{
+  margin-top:6px;
+  color:#6b7280;
+}
+
+.match-badge{
+  background:#dcfce7;
+  color:#15803d;
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:600;
+}
+
+.internship-meta{
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+  color:#4b5563;
+  font-size:14px;
+}
+
+.stipend{
+  font-weight:600;
+  color:#2563eb;
+}
+
+.skills{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.skills span{
+  background:#eef2ff;
+  color:#4f46e5;
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:12px;
+}
+
+.missing-skills{
+  color:#b45309;
+  font-size:14px;
+}
+
+.apply-btn{
+  align-self:flex-end;
+  border:none;
+  background:#6366f1;
+  color:white;
+  padding:10px 18px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.apply-btn:hover{
+  background:#4f46e5;
+}

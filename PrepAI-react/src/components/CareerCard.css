@@ -1,0 +1,53 @@
+.goal-card {
+  background: linear-gradient(
+    135deg,
+    #7c5cff,
+    #6a5af9
+  ) !important;
+
+  color: white;
+}
+
+.goal-readiness {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.goal-section h3 {
+  font-size: 13px;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  margin: 0;
+}
+
+.goal-section h2 {
+  font-size: 28px;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.readiness-section h3 {
+  font-size: 13px;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.readiness-section p {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.progress-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+  margin-top: 12px;
+}
+
+.progress {
+  height: 8px;
+  background: white;
+  border-radius: 10px;
+}

@@ -1,0 +1,73 @@
+.project-card {
+  background: white;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,.08);
+  transition: .25s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 180px;
+}
+
+.project-card:hover{
+transform:translateY(-6px);
+}
+
+.card-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:15px;
+}
+
+.match{
+font-size:13px;
+font-weight:700;
+color:#16a34a;
+}
+
+.difficulty{
+color:white;
+padding:5px 12px;
+border-radius:20px;
+font-size:12px;
+font-weight:600;
+}
+
+.project-card h3{
+margin:10px 0;
+font-size:24px;
+color:#1f2937;
+}
+
+
+
+.chips{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-bottom:20px;
+}
+
+.chip{
+background:#eef2ff;
+color:#4f46e5;
+padding:6px 12px;
+border-radius:20px;
+font-size:12px;
+}
+
+.view-btn{
+align-self:flex-end;
+background:none;
+border:none;
+color:#4f46e5;
+font-weight:700;
+cursor:pointer;
+font-size:15px;
+}
+
+.view-btn:hover{
+text-decoration:underline;
+}

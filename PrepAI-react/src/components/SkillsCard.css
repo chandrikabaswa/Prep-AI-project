@@ -1,0 +1,15 @@
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.skill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  background: #f0f2ff;
+  color: #6366f1;
+  font-weight: 500;
+}

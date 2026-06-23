@@ -1,0 +1,84 @@
+.learning-card{
+    padding:16px 0;
+    border-bottom:1px solid #ececec;
+}
+
+.learning-card:last-child{
+    border:none;
+}
+
+.learning-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.learning-header h4{
+    margin:0;
+    font-size:17px;
+    color:#1f2937;
+}
+
+.learning-meta{
+    margin-top:8px;
+    color:#6b7280;
+    font-size:14px;
+}
+
+.learning-link{
+    display:inline-block;
+    margin-top:12px;
+    color:#6366f1;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.learning-link:hover{
+    text-decoration:underline;
+}
+
+.difficulty{
+    padding:4px 10px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:600;
+}
+
+.beginner{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.intermediate{
+    background:#fef3c7;
+    color:#b45309;
+}
+
+.advanced{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+.full-view {
+  background: white;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.06);
+}
+
+.resources {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.resources a {
+  color: #6366f1;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.resources a:hover {
+  text-decoration: underline;
+}
