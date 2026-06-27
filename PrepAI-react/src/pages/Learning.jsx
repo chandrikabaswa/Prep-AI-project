@@ -13,6 +13,7 @@ function Learning() {
 
   const [search, setSearch] = useState("");
   const [difficulty, setDifficulty] = useState("All");
+  const [aiLoading, setAiLoading] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
@@ -45,6 +46,21 @@ function Learning() {
     });
   }, [topics, search, difficulty]);
 
+  const generateAILearning = async () => {
+    try {
+      setAiLoading(true);
+
+      const res = await api.get("/learning/ai-recommended");
+
+      setTopics(res.data);
+    } catch (err) {
+      console.error(err);
+      alert("Failed to generate AI learning roadmap.");
+    } finally {
+      setAiLoading(false);
+    }
+  };
+
   return (
     <div className="layout">
       <Sidebar />
@@ -58,6 +74,16 @@ function Learning() {
           Personalized learning recommendations based on your skills and career
           goal.
         </p>
+
+        <div className="learning-actions">
+          <button
+            className="ai-learning-btn"
+            onClick={generateAILearning}
+            disabled={aiLoading}
+          >
+            {aiLoading ? "🤖 Generating..." : "✨ Generate AI Roadmap"}
+          </button>
+        </div>
 
         <div className="learning-toolbar">
           <input
@@ -80,7 +106,11 @@ function Learning() {
 
         <div className="learning-grid">
           {filteredTopics.map((topic) => (
-            <LearningCard key={topic._id} item={topic} fullView={true} />
+            <LearningCard
+              key={topic._id || topic.title}
+              item={topic}
+              fullView={true}
+            />
           ))}
         </div>
       </div>

@@ -82,3 +82,35 @@
 .resources a:hover {
   text-decoration: underline;
 }
+
+.ai-reason {
+  margin: 15px 0;
+  padding: 12px;
+  background: #f5f7ff;
+  border-left: 4px solid #6366f1;
+  border-radius: 10px;
+}
+
+.ai-reason h5 {
+  margin: 0 0 6px;
+  color: #4f46e5;
+  font-size: 14px;
+}
+
+.ai-reason p {
+  margin: 0;
+  color: #555;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.ai-badge{
+  display:inline-block;
+  background:#ede9fe;
+  color:#5b21b6;
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:10px;
+}

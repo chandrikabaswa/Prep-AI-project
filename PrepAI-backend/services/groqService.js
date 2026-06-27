@@ -1,4 +1,5 @@
 require("dotenv").config();
+const axios = require("axios");
 
 const Groq = require("groq-sdk");
 
@@ -123,7 +124,125 @@ Example:
   return response.choices[0].message.content;
 }
 
+async function generateProjectRecommendations(user) {
+  const prompt = `
+You are an experienced software mentor.
+
+Generate exactly 6 software project recommendations based on the student's profile.
+
+Student Profile
+
+Branch:
+${user.branch}
+
+Skills:
+${(user.skills || []).join(", ")}
+
+Career Goal:
+${user.goal}
+
+Instructions:
+
+1. Recommend projects suitable for the student's skill level.
+2. Recommend projects that improve placement opportunities.
+3. Prefer trending technologies used in the software industry.
+4. Recommend portfolio-worthy projects.
+5. Include projects frequently discussed in technical interviews.
+6. Recommend modern tech stacks.
+7. Explain why each project is recommended.
+8. Return ONLY valid JSON.
+
+Example:
+
+[
+  {
+    "title":"AI Resume Analyzer",
+    "description":"Analyze resumes and suggest improvements using AI.",
+    "difficulty":"Intermediate",
+    "reason":"Recommended because it strengthens your React, backend development and AI integration skills while being an excellent portfolio project.",
+    "skills":["React","Node.js","AI"],
+    "techStack":["React","Express","MongoDB","Groq AI"]
+  }
+]
+`;
+
+  const response = await groq.chat.completions.create({
+    model: "llama-3.3-70b-versatile",
+    messages: [
+      {
+        role: "user",
+        content: prompt,
+      },
+    ],
+    temperature: 0.7,
+  });
+
+  return response.choices[0].message.content;
+}
+
+async function generateLearningRecommendations(user) {
+  const prompt = `
+You are an expert software mentor.
+
+Generate a personalized learning roadmap for the student.
+
+Student Profile
+
+Branch:
+${user.branch}
+
+Skills:
+${(user.skills || []).join(", ")}
+
+Career Goal:
+${user.goal}
+
+Instructions:
+
+Return each topic with:
+1. Recommend topics in a logical learning order.
+2. Focus on technologies currently in demand.
+3. Include interview preparation topics.
+4. Recommend topics that strengthen the student's portfolio.
+5. Explain why each topic is recommended.
+6. Return ONLY valid JSON.
+
+Example:
+
+[
+  {
+    "title": "React Hooks",
+    "description": "Learn useState and useEffect.",
+    "difficulty": "Intermediate",
+    "duration": "2 Weeks",
+    "reason": "Recommended because React Hooks are essential for modern React development and are widely used in frontend interviews.",
+    "resources": [
+      {
+        "name": "React Docs",
+        "url": "https://react.dev"
+      }
+    ]
+  }
+]
+`;
+
+  const response = await groq.chat.completions.create({
+    model: "llama-3.3-70b-versatile",
+    messages: [
+      {
+        role: "user",
+        content: prompt,
+      },
+    ],
+    temperature: 0.7,
+  });
+
+  return response.choices[0].message.content;
+}
+
 module.exports = {
   generateInterviewQuestions,
   evaluateInterviewAnswers,
+  generateProjectRecommendations,
+  generateLearningRecommendations,
 };

@@ -15,6 +15,7 @@ function Projects() {
   const [search, setSearch] = useState("");
   const [difficulty, setDifficulty] = useState("All");
   const [category, setCategory] = useState("All");
+  const [aiLoading, setAiLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -62,6 +63,22 @@ function Projects() {
     });
   }, [projects, search, difficulty, category]);
 
+  const generateAIProjects = async () => {
+    try {
+      setAiLoading(true);
+
+      const res = await api.get("/projects/ai-recommended");
+
+      setRecommendedProjects(res.data);
+      setActiveTab("recommended");
+    } catch (err) {
+      console.error(err);
+      alert("Failed to generate AI recommendations.");
+    } finally {
+      setAiLoading(false);
+    }
+  };
+
   return (
     <div className="layout">
       <Sidebar />
@@ -72,6 +89,16 @@ function Projects() {
             <h1>Project Guidance</h1>
 
             <p>Discover projects that match your skills and interests.</p>
+
+            <div className="ai-buttons">
+              <button className="ai-project-btn" onClick={generateAIProjects}>
+                ✨ AI Recommendations
+              </button>
+
+              <button className="regen-btn" onClick={generateAIProjects}>
+                🔄 Generate Again
+              </button>
+            </div>
           </div>
 
           <div className="header-profile">
@@ -142,6 +169,18 @@ function Projects() {
             ))}
           </div>
         </div>
+
+        {aiLoading && (
+          <div className="ai-loading-card">
+            <div className="ai-loading-icon">🤖</div>
+
+            <h3>Generating AI Recommendations...</h3>
+
+            <p>Please wait while AI analyzes your profile.</p>
+
+            <div className="loader"></div>
+          </div>
+        )}
 
         <div className="project-grid">
           {filteredProjects.length === 0 ? (
