@@ -240,9 +240,78 @@ Example:
   return response.choices[0].message.content;
 }
 
+async function analyzeResume(resumeText) {
+  const prompt = `
+You are an ATS Resume Analyzer.
+
+Analyze the following resume and return ONLY valid JSON.
+
+Resume:
+
+${resumeText}
+
+Instructions:
+
+1. Give an ATS score out of 100.
+2. Write a short overall summary.
+3. List 4 strengths.
+4. List 4 weaknesses.
+5. List important missing skills.
+6. Give 5 suggestions for improvement.
+
+Return ONLY valid JSON.
+
+Example:
+
+{
+  "atsScore": 84,
+  "summary": "The resume is well structured with relevant technical projects but lacks measurable achievements.",
+  "strengths": [
+    "Good project experience",
+    "Strong React skills",
+    "Clean formatting",
+    "Relevant technical stack"
+  ],
+  "weaknesses": [
+    "Projects lack quantifiable impact",
+    "Few action verbs",
+    "No deployment links",
+    "Limited soft skills"
+  ],
+  "missingSkills": [
+    "Docker",
+    "CI/CD",
+    "Unit Testing"
+  ],
+  "improvements": [
+    "Add measurable achievements.",
+    "Include deployment links.",
+    "Mention leadership experience.",
+    "Use stronger action verbs.",
+    "Tailor the resume for each job."
+  ]
+}
+`;
+
+  const response = await groq.chat.completions.create({
+    model: "llama-3.3-70b-versatile",
+    messages: [
+      {
+        role: "user",
+        content: prompt,
+      },
+    ],
+    temperature: 0.5,
+  });
+
+  return response.choices[0].message.content;
+}
+
+
 module.exports = {
   generateInterviewQuestions,
   evaluateInterviewAnswers,
   generateProjectRecommendations,
   generateLearningRecommendations,
+  analyzeResume,
 };

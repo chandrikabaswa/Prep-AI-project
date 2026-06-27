@@ -281,3 +281,7 @@
   box-shadow: 0 5px 12px
     rgba(106, 90, 249, 0.35);
 }
+
+.bio-card .primary-btn {
+  margin-top: 16px;
+}

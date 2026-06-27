@@ -9,11 +9,15 @@ export default function Sidebar() {
 
       <ul className="menu">
         <li onClick={() => navigate("/dashboard")}>Dashboard</li>
+
         <li onClick={() => navigate("/projects")}>Project Guidance</li>
+
+        <li onClick={() => navigate("/resume-analyzer")}>Resume Analyzer</li>
 
         <li onClick={() => navigate("/internships")}>Internships</li>
 
         <li onClick={() => navigate("/mock-interview")}>Mock Interview</li>
+
         <li onClick={() => navigate("/profile")}>Profile</li>
       </ul>
 

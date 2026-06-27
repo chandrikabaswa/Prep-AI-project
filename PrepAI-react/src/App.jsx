@@ -9,6 +9,7 @@ import MockInterviews from "./pages/MockInterviews";
 import ProjectDetails from "./pages/ProjectDetails";
 import Learning from "./pages/Learning";
 import InterviewResult from "./pages/InterviewResult";
+import ResumeAnalyzer from "./pages/ResumeAnalyzer";
 
 function App() {
   return (
@@ -33,6 +34,8 @@ function App() {
         <Route path="/learning" element={<Learning />} />
 
         <Route path="/interview-result" element={<InterviewResult />} />
+
+        <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
       </Routes>
     </BrowserRouter>
   );

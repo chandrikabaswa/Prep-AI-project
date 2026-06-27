@@ -1,6 +1,7 @@
 const userRoutes = require("./routes/userRoutes");
 const projectRoutes = require("./routes/projectRoutes");
 const learningRoutes = require("./routes/learningRoutes");
+const resumeRoutes = require("./routes/resumeRoutes");
 
 const express = require("express");
 const cors = require("cors");
@@ -25,6 +26,7 @@ app.use("/api/internships", internshipRoutes);
 app.use("/api/learning", learningRoutes);
 app.use("/api/interviews", interviewRoutes);
 app.use("/api/ai-interview", aiInterviewRoutes);
+app.use("/api/resume", resumeRoutes);
 
 app.get("/", (req, res) => {
   res.send("PrepAI Backend is Running 🚀");

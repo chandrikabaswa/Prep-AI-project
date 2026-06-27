@@ -91,12 +91,13 @@ const updateProfile = async (req, res) => {
       });
     }
 
-    user.college = req.body.college;
-    user.degree = req.body.degree;
-    user.branch = req.body.branch;
-    user.year = req.body.year;
-    user.skills = req.body.skills;
-    user.goal = req.body.goal;
+    user.college = req.body.college ?? user.college;
+    user.degree = req.body.degree ?? user.degree;
+    user.branch = req.body.branch ?? user.branch;
+    user.year = req.body.year ?? user.year;
+    user.skills = req.body.skills ?? user.skills;
+    user.goal = req.body.goal ?? user.goal;
+    user.bio = req.body.bio ?? user.bio;
 
     await user.save();
 
