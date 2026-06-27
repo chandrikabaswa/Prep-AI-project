@@ -1,119 +1,130 @@
 # 🚀 PrepAI – AI-Powered Career Preparation Platform
 
-PrepAI is an AI-powered career preparation platform that helps students prepare for placements by providing personalized project recommendations, learning resources, internship suggestions, and AI-powered mock interviews.
+PrepAI is a full-stack AI-powered career preparation platform that helps students enhance their technical skills, prepare for interviews, improve their resumes, and discover personalized learning resources. The platform leverages Generative AI to provide intelligent recommendations and feedback based on each student's profile.
 
 ---
 
 ## ✨ Features
 
-### 📚 Personalized Dashboard
-- Displays student profile and skills
-- Personalized recommendations
-- Clean and responsive UI
+### 👤 User Authentication
+- Secure user registration and login using JWT Authentication
+- Personalized student profiles
 
-### 💡 Project Recommendations
-- AI-powered project suggestions
-- Technology stack recommendations
-- Difficulty-based filtering
+### 📊 Personalized Dashboard
+- Displays profile information and career progress
+- Personalized recommendations based on user profile
 
-### 📖 Learning Recommendations
-- Curated learning resources
-- Skill-based roadmaps
-- Recommended courses
+### 🤖 AI Project Recommendations
+- Generates personalized software project ideas using Groq AI
+- Recommendations based on:
+  - Skills
+  - Career Goal
+  - Academic Branch
+- AI explains why each project is recommended
+
+### 📚 AI Learning Roadmap
+- Generates personalized learning recommendations
+- Suggests technologies and topics based on user profile
+- Includes AI-generated explanations for each recommendation
+
+### 🎤 AI Mock Interview
+- Generates interview questions based on:
+  - Resume
+  - Job Role
+  - Job Description
+- Supports:
+  - Resume-aware interview questions
+  - Speech-to-Text answers
+  - Text-to-Speech question narration
+  - AI evaluation and feedback
+  - Technical knowledge scoring
+  - Communication scoring
+  - Confidence scoring
+
+### 📄 AI Resume Analyzer
+- Upload PDF/DOCX resumes
+- AI-powered ATS analysis
+- Generates:
+  - ATS Score
+  - Resume Summary
+  - Strengths
+  - Weaknesses
+  - Missing Skills
+  - Improvement Suggestions
 
 ### 💼 Internship Recommendations
-- Internship listings
-- Role-based recommendations
-- Easy navigation
+- Displays internship opportunities relevant to the user's interests
 
-### 🤖 AI Mock Interview
-- Upload Resume (PDF/DOCX)
-- Resume Parsing
-- AI-generated interview questions
-- Personalized questions based on:
-  - Resume
-  - Target Role
-  - Job Description
-- Speech-to-Text answer input
-- AI reads questions aloud using Text-to-Speech
-- Interview timer
-- AI evaluation with detailed feedback
-
-### 📊 Interview Evaluation
-- Overall Score
-- Technical Knowledge Score
-- Communication Score
-- Confidence Score
-- Strengths
-- Areas for Improvement
-- Detailed AI Feedback
-- Interview Summary
+### 👤 Profile Management
+- Manage:
+  - Skills
+  - Career Goal
+  - Bio
 
 ---
 
-# 🛠 Tech Stack
+## 🛠 Tech Stack
 
-## Frontend
-- React
-- Vite
+### Frontend
+- React.js
 - React Router
-- CSS
+- Axios
+- CSS3
 
-## Backend
+### Backend
 - Node.js
 - Express.js
-
-## Database
 - MongoDB
 - Mongoose
 
-## AI Integration
-- Groq API (Llama 3)
+### AI
+- Groq API
+- Llama 3.3 70B Versatile
 
-## Other Technologies
+### Authentication
+- JWT
+- bcrypt
+
+### Resume Processing
 - Multer
 - pdf-parse
 - mammoth
-- Web Speech API
-  - Speech Recognition
-  - Speech Synthesis
 
 ---
 
-# 📂 Project Structure
+## 📂 Project Structure
 
 ```
 PrepAI
 │
 ├── PrepAI-react
-│   ├── src
-│   ├── public
-│   └── package.json
+│   ├── components
+│   ├── pages
+│   ├── services
+│   └── assets
 │
 ├── PrepAI-backend
 │   ├── controllers
-│   ├── models
 │   ├── routes
-│   ├── services
+│   ├── models
 │   ├── middleware
-│   └── package.json
+│   ├── services
+│   └── uploads
 │
 └── README.md
 ```
 
 ---
 
-# 🚀 Getting Started
+## 🚀 Installation
 
-## Clone the repository
+### Clone the repository
 
 ```bash
-git clone https://github.com/your-username/PrepAI.git
+git clone https://github.com/chandrikabaswa/Prep-AI-project.git
 ```
 
----
-
-## Frontend Setup
+### Frontend
 
 ```bash
 cd PrepAI-react
@@ -121,15 +132,7 @@ npm install
 npm run dev
 ```
 
-Runs on:
-
-```
-http://localhost:5173
-```
-
----
-
-## Backend Setup
+### Backend
 
 ```bash
 cd PrepAI-backend
@@ -137,58 +140,48 @@ npm install
 npm run dev
 ```
 
-Runs on:
-
-```
-http://localhost:5000
-```
-
 ---
 
-# 🔑 Environment Variables
+## 🔑 Environment Variables
 
 Create a `.env` file inside **PrepAI-backend**
 
 ```env
 PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
-GROQ_API_KEY=your_groq_api_key
+
+MONGO_URI=YOUR_MONGODB_CONNECTION
+
+JWT_SECRET=YOUR_SECRET_KEY
+
+GROQ_API_KEY=YOUR_GROQ_API_KEY
 ```
 
 ---
 
-# 📸 Screenshots
+## 📸 Screenshots
 
-Add screenshots of:
+> Add screenshots here after deployment.
 
 - Dashboard
-- Project Recommendations
-- Learning Recommendations
-- Internship Page
+- AI Project Recommendations
+- AI Learning Roadmap
 - AI Mock Interview
-- AI Evaluation
+- AI Resume Analyzer
 
 ---
 
-# 🎯 Future Enhancements
+## 🌟 Future Improvements
 
+- AI Resume vs Job Description Matching
 - Interview History
 - Download Interview Report (PDF)
-- AI Resume Feedback
-- Coding Interview Module
-- Behavioral Interview Module
-- Company-wise Interview Sets
-- Performance Analytics Dashboard
+- Progress Tracking Dashboard
+- AI Career Guidance Chatbot
 
 ---
 
-# 👩‍💻 Author
+## 👩‍💻 Author
 
 **Chandrika Baswa**
 
-- GitHub: https://github.com/chandrikabaswa
-
----
-
-## ⭐ If you like this project, consider giving it a star!
+GitHub: https://github.com/chandrikabaswa
