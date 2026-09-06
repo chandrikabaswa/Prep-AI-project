@@ -1,9 +1,7 @@
 const Learning = require("../models/Learning");
 const User = require("../models/User");
 
-const {
-  generateLearningRecommendations,
-} = require("../services/groqService");
+const { generateLearningRecommendations } = require("../services/groqService");
 
 const getRecommendedLearning = async (req, res) => {
   try {
@@ -16,37 +14,51 @@ const getRecommendedLearning = async (req, res) => {
     }
 
     const userSkills = (user.skills || []).map((skill) =>
-      skill.toLowerCase().trim()
+      skill.toLowerCase().trim(),
     );
 
-    const userGoal = (user.goal || "").toLowerCase().trim();
+    let userGoal = (user.goal || "").toLowerCase().trim();
+
+    if (userGoal === "software developer") {
+      userGoal = "software engineer";
+    }
 
     const topics = await Learning.find();
+
+    console.log("USER GOAL:", userGoal);
+    console.log("USER SKILLS:", userSkills);
+    console.log("NUMBER OF LEARNINGS:", topics.length);
+
+    topics.forEach((topic) => {
+      console.log(
+        "LEARNING:",
+        topic.title,
+        "GOALS:",
+        topic.goals,
+        "SKILLS:",
+        topic.skills,
+      );
+    });
 
     const recommendations = topics.filter((topic) => {
       // Case-insensitive goal match
       const goalMatch = topic.goals.some(
-        (goal) =>
-          goal.toLowerCase().trim() === userGoal
+        (goal) => goal.toLowerCase().trim() === userGoal,
       );
 
       // Check if prerequisites are met
       const prerequisiteMet =
         topic.skills.length === 0 ||
         topic.skills.some((skill) =>
-          userSkills.includes(skill.toLowerCase().trim())
+          userSkills.includes(skill.toLowerCase().trim()),
         );
 
       // Don't recommend if the user already knows this topic
       const alreadyKnows = userSkills.includes(
-        topic.title.toLowerCase().trim()
+        topic.title.toLowerCase().trim(),
       );
 
-      return (
-        goalMatch &&
-        prerequisiteMet &&
-        !alreadyKnows
-      );
+      return goalMatch && prerequisiteMet && !alreadyKnows;
     });
 
     res.json(recommendations);

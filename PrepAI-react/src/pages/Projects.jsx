@@ -27,10 +27,19 @@ function Projects() {
         ]);
 
         setUser(profileRes.data);
-        setRecommendedProjects(recommendedRes.data);
+
+        // Backend recommendation response:
+        // { project: {...}, match: 50 }
+        const recommendations = recommendedRes.data.map((item) => ({
+          ...item.project,
+          match: item.match,
+          reason: item.reason,
+        }));
+
+        setRecommendedProjects(recommendations);
         setAllProjects(allRes.data);
       } catch (err) {
-        console.error(err);
+        console.error("Error fetching projects:", err);
       }
     };
 
@@ -45,17 +54,21 @@ function Projects() {
       const keyword = search.toLowerCase();
 
       const matchesSearch =
-        project.title.toLowerCase().includes(keyword) ||
-        project.description.toLowerCase().includes(keyword) ||
-        project.skills.some((skill) => skill.toLowerCase().includes(keyword)) ||
-        project.techStack.some((tech) => tech.toLowerCase().includes(keyword));
+        project.title?.toLowerCase().includes(keyword) ||
+        project.description?.toLowerCase().includes(keyword) ||
+        (project.skills || []).some((skill) =>
+          skill.toLowerCase().includes(keyword),
+        ) ||
+        (project.techStack || []).some((tech) =>
+          tech.toLowerCase().includes(keyword),
+        );
 
       const matchesDifficulty =
         difficulty === "All" || project.difficulty === difficulty;
 
       const matchesCategory =
         category === "All" ||
-        project.skills.some(
+        (project.skills || []).some(
           (skill) => skill.toLowerCase() === category.toLowerCase(),
         );
 
@@ -69,11 +82,18 @@ function Projects() {
 
       const res = await api.get("/projects/ai-recommended");
 
+      console.log("AI PROJECT RESPONSE:", res.data);
+      console.log("IS ARRAY:", Array.isArray(res.data));
+
       setRecommendedProjects(res.data);
       setActiveTab("recommended");
     } catch (err) {
-      console.error(err);
-      alert("Failed to generate AI recommendations.");
+      console.error("AI PROJECT ERROR:", err);
+      console.error("RESPONSE:", err.response?.data);
+
+      alert(
+        err.response?.data?.message || "Failed to generate AI recommendations.",
+      );
     } finally {
       setAiLoading(false);
     }
@@ -91,11 +111,19 @@ function Projects() {
             <p>Discover projects that match your skills and interests.</p>
 
             <div className="ai-buttons">
-              <button className="ai-project-btn" onClick={generateAIProjects}>
+              <button
+                className="ai-project-btn"
+                onClick={generateAIProjects}
+                disabled={aiLoading}
+              >
                 ✨ AI Recommendations
               </button>
 
-              <button className="regen-btn" onClick={generateAIProjects}>
+              <button
+                className="regen-btn"
+                onClick={generateAIProjects}
+                disabled={aiLoading}
+              >
                 🔄 Generate Again
               </button>
             </div>
@@ -104,7 +132,6 @@ function Projects() {
           <div className="header-profile">
             <div className="profile-info">
               <h3>{user.name}</h3>
-
               <span>{user.goal || "Student"}</span>
             </div>
 

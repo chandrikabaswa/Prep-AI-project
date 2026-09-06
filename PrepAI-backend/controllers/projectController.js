@@ -1,9 +1,7 @@
 const Project = require("../models/Project");
 const User = require("../models/User");
 
-const {
-  generateProjectRecommendations,
-} = require("../services/groqService");
+const { generateProjectRecommendations } = require("../services/groqService");
 
 const getRecommendedProjects = async (req, res) => {
   try {
@@ -19,9 +17,10 @@ const getRecommendedProjects = async (req, res) => {
 
     const recommendations = projects
       .map((project) => {
-        const userSkills = user.skills.map((skill) =>
-          skill.toLowerCase().trim(),
-        );
+        const userSkills = user.skills
+          .join(",")
+          .split(",")
+          .map((skill) => skill.toLowerCase().trim());
 
         const matchedSkills = project.skills.filter((skill) =>
           userSkills.includes(skill.toLowerCase().trim()),
@@ -32,7 +31,7 @@ const getRecommendedProjects = async (req, res) => {
         );
 
         return {
-          ...project.toObject(),
+          project: project.toObject(),
           match: score,
         };
       })
@@ -96,7 +95,6 @@ const getProjectById = async (req, res) => {
     }
 
     res.json(project);
-
   } catch (error) {
     res.status(500).json({
       message: error.message,

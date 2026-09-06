@@ -4,6 +4,14 @@ import { useNavigate } from "react-router-dom";
 export default function ProjectCard({ project }) {
   const navigate = useNavigate();
 
+  // Handles both:
+  // normal project -> project
+  // recommended project -> project.project
+  const projectData = project.project || project;
+
+  const match = project.match;
+  const reason = project.reason || projectData.reason;
+
   const difficultyColor = {
     Beginner: "#22c55e",
     Intermediate: "#f59e0b",
@@ -16,43 +24,44 @@ export default function ProjectCard({ project }) {
         <span
           className="difficulty"
           style={{
-            background: difficultyColor[project.difficulty],
+            background: difficultyColor[projectData.difficulty],
           }}
         >
-          {project.difficulty}
+          {projectData.difficulty}
         </span>
 
-        {project.match && <span className="match">⭐ {project.match}%</span>}
+        {match && <span className="match">⭐ {match}%</span>}
       </div>
 
-      {project.reason && <span className="ai-badge">🤖 AI Recommended</span>}
+      {reason && (
+        <span className="ai-badge">
+          🤖 AI Recommended
+        </span>
+      )}
 
-      <h3>{project.title}</h3>
+      <h3>{projectData.title}</h3>
 
-      <p>{project.description}</p>
+      <p>{projectData.description}</p>
 
-      {/* AI Recommendation Reason */}
-
-      {project.reason && (
+      {reason && (
         <div className="ai-reason">
           <h4>⭐ Why this project?</h4>
-
-          <p>{project.reason}</p>
+          <p>{reason}</p>
         </div>
       )}
 
       <div className="chips">
-        {project.techStack.slice(0, 4).map((tech) => (
+        {(projectData.techStack || []).slice(0, 4).map((tech) => (
           <span key={tech} className="chip">
             {tech}
           </span>
         ))}
       </div>
 
-      {project._id && (
+      {projectData._id && (
         <button
           className="view-btn"
-          onClick={() => navigate(`/projects/${project._id}`)}
+          onClick={() => navigate(`/projects/${projectData._id}`)}
         >
           View Details →
         </button>

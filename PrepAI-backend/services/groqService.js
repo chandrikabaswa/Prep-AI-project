@@ -55,7 +55,7 @@ Example:
 `;
 
   const response = await groq.chat.completions.create({
-    model: "llama-3.3-70b-versatile",
+    model: "openai/gpt-oss-20b",
     messages: [
       {
         role: "user",
@@ -111,7 +111,7 @@ Example:
 `;
 
   const response = await groq.chat.completions.create({
-    model: "llama-3.3-70b-versatile",
+    model: "openai/gpt-oss-20b",
     messages: [
       {
         role: "user",
@@ -167,15 +167,19 @@ Example:
 `;
 
   const response = await groq.chat.completions.create({
-    model: "llama-3.3-70b-versatile",
+    model: "openai/gpt-oss-20b",
     messages: [
       {
         role: "user",
         content: prompt,
       },
     ],
-    temperature: 0.7,
+    temperature: 0.5,
+    max_completion_tokens: 6000,
   });
+
+  console.log("AI PROJECT RAW RESPONSE:");
+  console.log(response.choices[0].message.content);
 
   return response.choices[0].message.content;
 }
@@ -227,14 +231,15 @@ Example:
 `;
 
   const response = await groq.chat.completions.create({
-    model: "llama-3.3-70b-versatile",
+    model: "openai/gpt-oss-20b",
     messages: [
       {
         role: "user",
         content: prompt,
       },
     ],
-    temperature: 0.7,
+    temperature: 0.5,
+    max_completion_tokens: 6000,
   });
 
   return response.choices[0].message.content;
@@ -294,7 +299,7 @@ Example:
 `;
 
   const response = await groq.chat.completions.create({
-    model: "llama-3.3-70b-versatile",
+    model: "openai/gpt-oss-20b",
     messages: [
       {
         role: "user",
@@ -306,7 +311,6 @@ Example:
 
   return response.choices[0].message.content;
 }
-
 
 module.exports = {
   generateInterviewQuestions,
