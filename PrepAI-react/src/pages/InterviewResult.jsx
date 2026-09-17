@@ -8,8 +8,6 @@ export default function InterviewResult() {
 
   const state = location.state;
 
-  console.log("Interview Result State:", state);
-
   if (!state) {
     return (
       <div className="result-page">

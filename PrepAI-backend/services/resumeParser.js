@@ -1,5 +1,5 @@
 const pdf = require("pdf-parse");
-const mammoth = require("mammoth");
+const mammoth = require("mammoth"); 
 
 async function extractResumeText(file) {
   if (!file) return "";

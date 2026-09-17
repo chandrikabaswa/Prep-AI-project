@@ -8,7 +8,6 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const internshipRoutes = require("./routes/internshipRoutes");
-const interviewRoutes = require("./routes/interviewRoutes");
 const aiInterviewRoutes = require("./routes/aiInterviewRoutes");
 
 dotenv.config();
@@ -24,7 +23,6 @@ app.use("/api/users", userRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/internships", internshipRoutes);
 app.use("/api/learning", learningRoutes);
-app.use("/api/interviews", interviewRoutes);
 app.use("/api/ai-interview", aiInterviewRoutes);
 app.use("/api/resume", resumeRoutes);
 
@@ -37,5 +35,3 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
-
-console.log("Gemini Key:", process.env.GEMINI_API_KEY);

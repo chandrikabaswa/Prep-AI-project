@@ -2,17 +2,13 @@ const express = require("express");
 
 const router = express.Router();
 
-const multer = require("multer");
-
 const protect = require("../middleware/authMiddleware");
+
+const upload = require("../middleware/uploadMiddleware");
 
 const {
   analyzeResumeController,
 } = require("../controllers/resumeController");
-
-const upload = multer({
-  storage: multer.memoryStorage(),
-});
 
 router.post(
   "/analyze",

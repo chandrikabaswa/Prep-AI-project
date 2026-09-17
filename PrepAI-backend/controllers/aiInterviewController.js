@@ -73,16 +73,9 @@ const evaluateInterview = async (req, res) => {
       });
     }
 
-    console.log("========== EVALUATION START ==========");
-    console.log("Role:", role);
-    console.log("Answered Questions:", answeredQuestions.length);
-
     // Send only answered questions to the AI
     let result = await evaluateInterviewAnswers(role, answeredQuestions);
-
-    console.log("AI Raw Response:");
-    console.log(result);
-
+    
     result = result
       .replace(/```json/g, "")
       .replace(/```/g, "")

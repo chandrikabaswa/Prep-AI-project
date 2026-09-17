@@ -10,9 +10,6 @@ const internships = require("./data/internships");
 const Learning = require("./models/Learning");
 const learning = require("./data/learning");
 
-// const Interview = require("./models/Interview");
-// const interviewQuestions = require("./data/interviewQuestions");
-
 dotenv.config();
 
 mongoose
@@ -29,10 +26,7 @@ mongoose
     await Internship.insertMany(internships);
     await Learning.insertMany(learning);
 
-    // await Interview.deleteMany();
-    // await Interview.insertMany(interviewQuestions);
-
-    console.log("Projects & Internships Seeded Successfully!");
+    console.log("Projects, Internships & Learning Topics Seeded Successfully!");
 
     process.exit();
   })

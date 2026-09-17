@@ -19,26 +19,11 @@ const getRecommendedLearning = async (req, res) => {
 
     let userGoal = (user.goal || "").toLowerCase().trim();
 
-    if (userGoal === "software developer") {
+    if (userGoal === "sde" || userGoal === "software developer") {
       userGoal = "software engineer";
     }
 
     const topics = await Learning.find();
-
-    console.log("USER GOAL:", userGoal);
-    console.log("USER SKILLS:", userSkills);
-    console.log("NUMBER OF LEARNINGS:", topics.length);
-
-    topics.forEach((topic) => {
-      console.log(
-        "LEARNING:",
-        topic.title,
-        "GOALS:",
-        topic.goals,
-        "SKILLS:",
-        topic.skills,
-      );
-    });
 
     const recommendations = topics.filter((topic) => {
       // Case-insensitive goal match

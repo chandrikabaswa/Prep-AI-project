@@ -82,9 +82,6 @@ function Projects() {
 
       const res = await api.get("/projects/ai-recommended");
 
-      console.log("AI PROJECT RESPONSE:", res.data);
-      console.log("IS ARRAY:", Array.isArray(res.data));
-
       setRecommendedProjects(res.data);
       setActiveTab("recommended");
     } catch (err) {

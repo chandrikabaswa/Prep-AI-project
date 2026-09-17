@@ -1,5 +1,4 @@
 require("dotenv").config();
-const axios = require("axios");
 
 const Groq = require("groq-sdk");
 
@@ -177,9 +176,6 @@ Example:
     temperature: 0.5,
     max_completion_tokens: 6000,
   });
-
-  console.log("AI PROJECT RAW RESPONSE:");
-  console.log(response.choices[0].message.content);
 
   return response.choices[0].message.content;
 }
